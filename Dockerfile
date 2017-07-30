@@ -9,7 +9,7 @@ ENV GO_VERSION=1.8.3
 
 RUN \
   yum -y install epel-release && \
-  yum -y --enablerepo=epel-testing install createrepo git make rpmbuild tito which && \
+  yum -y --enablerepo=epel-testing install createrepo git make rpmbuild rsync tito which && \
   tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   rm /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   mkdir /go /output && \

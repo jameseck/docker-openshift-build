@@ -12,8 +12,10 @@ RUN \
   yum -y --enablerepo=epel-testing install createrepo git make rpmbuild tito which && \
   tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   rm /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
-  mkdir /go && \
-  chmod 0775 /go
+  mkdir /go /output && \
+  chmod 0775 /go /output
 
 ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV GOPATH=/go
+
+VOLUME /output

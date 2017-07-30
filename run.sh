@@ -10,4 +10,5 @@ go get -v github.com/openshift/origin
 cd /go/src/github.com/openshift/origin
 git checkout $GIT_BRANCH
 yum-builddep -y origin.spec
+ln -s /output /go/src/github.com/openshift/origin/_output
 make build-rpms

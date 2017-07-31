@@ -9,7 +9,9 @@ ENV \
   PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
   GOPATH=/go \
   GIT_BRANCH=release-1.5 \
-  OUTPUT_DIR=/output
+  OUTPUT_DIR=/output \
+  GIT_NAME=James Eckersall \
+  GIT_EMAIL=james.eckersall@gmail.com
 
 RUN \
   yum -y install epel-release && \

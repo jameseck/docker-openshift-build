@@ -1,7 +1,7 @@
 #!/bin/bash
 
-git config --global user.name "James Eckersall"
-git config --global user.email "james.eckersall@gmail.com"
+git config --global user.name "${GIT_NAME}"
+git config --global user.email "${GIT_EMAIL}"
 
 echo "Cloning github.com/openshift/origin ..."
 go get -v github.com/openshift/origin

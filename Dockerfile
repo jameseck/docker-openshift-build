@@ -13,9 +13,10 @@ RUN \
   tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   rm /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   mkdir /go /output && \
-  chmod 0775 /go /output
+  chmod 0775 /run.sh /go /output
 
 ENV PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV GOPATH=/go
 
 VOLUME /output
+ENTRYPOINT ["/run.sh"]

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-GIT_BRANCH=release-1.5
-
 git config --global user.name "James Eckersall"
 git config --global user.email "james.eckersall@gmail.com"
 

@@ -15,7 +15,8 @@ ENV \
   GIT_EMAIL=james.eckersall@gmail.com \
   GPG_KEY_NAME="" \
   GPG_KEY_FILE="" \
-  GPG_KEY_PASSPHRASE=""
+  GPG_KEY_PASSPHRASE="" \
+  GPG_KEY_PASSPHRASE_FILE=""
 
 RUN \
   yum -y install epel-release && \

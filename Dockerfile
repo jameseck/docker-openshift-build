@@ -8,7 +8,8 @@ ENV \
   GO_VERSION=1.8.3 \
   PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
   GOPATH=/go \
-  GIT_BRANCH=release-1.5
+  GIT_BRANCH=release-1.5 \
+  OUTPUT_DIR=/output
 
 RUN \
   yum -y install epel-release && \
@@ -22,5 +23,5 @@ RUN \
   tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
   rm /tmp/go${GO_VERSION}.linux-amd64.tar.gz
 
-VOLUME /output
+VOLUME $OUTPUT_DIR
 ENTRYPOINT ["/run.sh"]

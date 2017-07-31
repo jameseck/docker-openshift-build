@@ -9,4 +9,4 @@ cd /go/src/github.com/openshift/origin
 git checkout $GIT_BRANCH
 yum-builddep -y origin.spec
 make build-rpms
-rsync -avh /go/src/github.com/openshift/origin/_output/local/releases/ /output/
+rsync -avh /go/src/github.com/openshift/origin/_output/local/releases/ $OUTPUT_DIR/

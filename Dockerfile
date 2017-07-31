@@ -3,6 +3,7 @@ FROM centos
 MAINTAINER James Eckersall <james.eckersall@gmail.com>
 
 ADD run.sh /
+ADD gpg_sign.expect /
 
 ENV \
   GO_VERSION=1.8.3 \
@@ -10,12 +11,15 @@ ENV \
   GOPATH=/go \
   GIT_BRANCH=release-1.5 \
   OUTPUT_DIR=/output \
-  GIT_NAME=James Eckersall \
-  GIT_EMAIL=james.eckersall@gmail.com
+  GIT_NAME="James Eckersall" \
+  GIT_EMAIL=james.eckersall@gmail.com \
+  GPG_KEY_NAME="" \
+  GPG_KEY_FILE="" \
+  GPG_KEY_PASSPHRASE=""
 
 RUN \
   yum -y install epel-release && \
-  yum -y --enablerepo=epel-testing install createrepo git make rpmbuild rsync tito which && \
+  yum -y --enablerepo=epel-testing install createrepo expect git make rpm-sign rpmbuild rsync tito which && \
   mkdir /go /output && \
   chmod 0775 /run.sh /go /output
 

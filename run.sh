@@ -25,6 +25,7 @@ EOF
   echo "allow-preset-passphrase" >> ~/.gnupg/gpg-agent.conf
   gpg-connect-agent reloadagent /bye
   gpg --import ${GPG_KEY_FILE}
+  gpg --export --armor ${GPG_KEY_NAME} > ${OUTPUT_DIR}/RPM-GPG-KEY-${GPG_KEY_NAME}
 
   if [ "${GPG_KEY_PASSPHRASE}" != "" ]; then
     GPG_PASS=${GPG_KEY_PASSPHRASE}
@@ -34,3 +35,5 @@ EOF
 
   find $OUTPUT_DIR/ -iname '*.rpm' -print0 | xargs -0 -n 1 expect -f /gpg_sign.expect "${GPG_PASS}"
 fi
+
+createrepo $OUTPUT_DIR

@@ -33,7 +33,8 @@ EOF
     GPG_PASS=$(cat ${GPG_KEY_PASSPHRASE_FILE})
   fi
 
-  find $OUTPUT_DIR/ -iname '*.rpm' -print0 | xargs -0 -n 1 expect -f /gpg_sign.expect "${GPG_PASS}"
+  #find $OUTPUT_DIR/ -iname '*.rpm' -print0 | xargs -0 -n 1 expect -f /gpg_sign.expect "${GPG_PASS}"
+  find $OUTPUT_DIR/ -iname '*.rpm' -print0 | xargs -0 expect -f /gpg_sign.expect
 fi
 
 createrepo $OUTPUT_DIR

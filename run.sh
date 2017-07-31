@@ -38,3 +38,4 @@ EOF
 fi
 
 createrepo $OUTPUT_DIR
+echo "Success"

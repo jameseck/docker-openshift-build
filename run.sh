@@ -28,9 +28,9 @@ EOF
   gpg --export --armor ${GPG_KEY_NAME} > ${OUTPUT_DIR}/RPM-GPG-KEY-${GPG_KEY_NAME}
 
   if [ "${GPG_KEY_PASSPHRASE}" != "" ]; then
-    GPG_PASS=${GPG_KEY_PASSPHRASE}
+    export GPG_PASS=${GPG_KEY_PASSPHRASE}
   else
-    GPG_PASS=$(cat ${GPG_KEY_PASSPHRASE_FILE})
+    export GPG_PASS=$(cat ${GPG_KEY_PASSPHRASE_FILE})
   fi
 
   #find $OUTPUT_DIR/ -iname '*.rpm' -print0 | xargs -0 -n 1 expect -f /gpg_sign.expect "${GPG_PASS}"

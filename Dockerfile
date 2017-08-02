@@ -2,12 +2,9 @@ FROM centos
 
 MAINTAINER James Eckersall <james.eckersall@gmail.com>
 
-ADD run.sh /
-ADD gpg_sign.expect /
-
 ENV \
-  GO_VERSION=1.8.3 \
   PATH=/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+  GO_VERSION=1.8.3 \
   GOPATH=/go \
   GIT_BRANCH=release-1.5 \
   OUTPUT_DIR=/output \
@@ -20,15 +17,17 @@ ENV \
 
 RUN \
   yum -y install epel-release && \
-  yum -y --enablerepo=epel-testing install createrepo expect git make rpm-sign rpmbuild rsync tito which && \
-  mkdir /go /output && \
-  chmod 0775 /run.sh /go /output
-
-ADD https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz /tmp/
+  yum -y --enablerepo=epel-testing install bsdtar cpp createrepo expect gcc git glibc glibc-common glibc-devel glibc-headers golang golang-bin golang-src kernel-headers keyutils-libs-devel krb5-devel libarchive libcom_err-devel libgomp libmpc libselinux-devel libsepol-devel libverto-devel make mpfr pcre-devel rpm-sign rpmbuild rsync tito which && \
+  mkdir -m 0775 /go /output
 
 RUN \
-  tar -C /usr/local -xzf /tmp/go${GO_VERSION}.linux-amd64.tar.gz && \
-  rm /tmp/go${GO_VERSION}.linux-amd64.tar.gz
+  curl https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz | tar -C /usr/local -xz
+
+ADD run.sh /
+ADD gpg_sign.expect /
+
+RUN \
+  chmod 0755 /run.sh /gpg_sign.expect
 
 VOLUME $OUTPUT_DIR
 ENTRYPOINT ["/run.sh"]

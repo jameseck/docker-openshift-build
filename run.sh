@@ -45,6 +45,6 @@ EOF
   find "${RPM_DIR}/" -iname '*.rpm' -print0 | xargs -0 -n 1 /gpg_sign.expect
 fi
 
-createrepo "${OUTPUT_DIR}"
+createrepo "${RPM_DIR}"
 rsync -avh "${RPM_DIR}/" "${OUTPUT_DIR}/"
 echo -e "${GREEN}Success${NC}"

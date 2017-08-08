@@ -20,7 +20,7 @@ RUN \
   rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
   yum -y install epel-release && \
   rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 && \
-  yum -y --enablerepo=epel-testing install bsdtar cpp createrepo expect gcc git glibc glibc-common glibc-devel glibc-headers golang golang-bin golang-src kernel-headers keyutils-libs-devel krb5-devel libarchive libcom_err-devel libgomp libmpc libselinux-devel libsepol-devel libverto-devel make mpfr pcre-devel rpm-sign rpmbuild rsync tito which && \
+  yum -y --enablerepo=epel-testing install bsdtar cpp createrepo expect gcc git glibc glibc-common glibc-devel glibc-headers golang golang-bin golang-src kernel-headers keyutils-libs-devel krb5-devel libarchive libcom_err-devel libgomp libmpc libselinux-devel libsepol-devel libverto-devel make mpfr pcre-devel rpm-sign rpmbuild rpmrebuild rsync tito which && \
   mkdir -m 0775 /go /output
 
 RUN \

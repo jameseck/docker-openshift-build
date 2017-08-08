@@ -18,9 +18,15 @@ echo -e "${GREEN}Building RPM's${NC}"
 make build-rpms
 
 # At this point the rpm's are in /go/src/github.com/openshift/origin/_output/local/releases/
-# We should check that we can sign them and createrepo before syncing to $OUTPUT_DIR/
 
 RPM_DIR=/go/src/github.com/openshift/origin/_output/local/releases/
+
+if [ "${BUILD_NUMBER}" != "" ]; then
+  # Set the Epoch on the rpm packages to the BUILD_NUMBER
+  find "${RPM_DIR}" -iname '*.rpm' -print0 | xargs -0 -n 1 \
+    rpmrebuild -p --notest-install --change-spec-preamble='sed -e "/^Epoch:.*/d" -e "/Version/a Epoch: ${BUILD_NUMBER}"' --directory="${RPM_DIR}/updated/"
+  find "${RPM_DIR}/updated/" -iname '*.rpm' -print0 | xargs -0 mv -t "${RPM_DIR}"
+fi
 
 if [ -f "${GPG_KEY_FILE}" ]; then
 
@@ -42,7 +48,7 @@ EOF
     export GPG_PASS=$(cat "${GPG_KEY_PASSPHRASE_FILE}")
   fi
 
-  find "${RPM_DIR}/" -iname '*.rpm' -print0 | xargs -0 -n 1 /gpg_sign.expect
+  find "${RPM_DIR}" -iname '*.rpm' -print0 | xargs -0 -n 1 /gpg_sign.expect
 fi
 
 createrepo "${RPM_DIR}"

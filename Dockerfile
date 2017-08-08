@@ -13,7 +13,8 @@ ENV \
   GPG_KEY_NAME="" \
   GPG_KEY_FILE="" \
   GPG_KEY_PASSPHRASE="" \
-  GPG_KEY_PASSPHRASE_FILE=""
+  GPG_KEY_PASSPHRASE_FILE="" \
+  BUILD_NUMBER=""
 
 RUN \
   rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
